@@ -1,0 +1,54 @@
+version: '3.6'
+services:
+    api:
+        build: .
+        container_name: alemarcha-api-clean
+        working_dir: /home/alemarcha-back
+        logging:
+            driver: 'json-file'
+        ports:
+            - 3000:3000
+        command: >
+            bash -c "npm install && npm run debug"
+        volumes:
+            - ./:/home/alemarcha-back
+            - ./node_modules:/home/alemarcha-back/node_modules
+        depends_on:
+            - db
+            - rediscluster
+    rediscluster:
+        image: grokzen/redis-cluster
+        container_name: alemarcha-rediscluster-clean
+        environment:
+            REDIS_CLUSTER_IP: '0.0.0.0'
+        ports:
+            - 7000:7000
+            - 7001:7001
+            - 7002:7002
+            - 7003:7003
+            - 7004:7004
+            - 7005:7005
+        logging:
+            driver: 'json-file'
+        depends_on:
+            - db
+    db:
+        image: mysql:5.7.18
+        container_name: alemarcha-db-clean
+        working_dir: /var/lib/mysql
+        command: mysqld --sql_mode=""
+        environment:
+            MYSQL_DATABASE: test
+            MYSQL_ROOT_PASSWORD: alemarcha
+            MYSQL_USER: root
+            MYSQL_USER_PASSWORD: alemarcha
+        logging:
+            driver: 'json-file'
+        ports:
+            - 3306:3306
+        volumes:
+            - mysql:/var/lib/mysql
+
+volumes:
+    mysql:
+    node_modules:

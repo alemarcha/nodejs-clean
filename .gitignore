@@ -1,0 +1,51 @@
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Dependency directory
+# Commenting this out is preferred by some people, see
+#
+node_modules/
+
+# Users Environment Variables
+.lock-wscript
+.tsdrc
+.typingsrc
+
+#IDE configuration files
+.idea
+.vscode/launch.json
+*.iml
+
+build
+public
+docs
+lib
+test
+tmp
+app
+data/mysql
+artillery
+.nyc_output
+coverage
+package-lock.json
+
+# OS X trash files
+.DS_Store
+
+testcontrollersOld
+controllersOld
+modelsOld
+
+#docker
+docker/.aws
+docker/.pem
+docker/script/Backup*.sql
+
+# .nyc
+.nyc_output
