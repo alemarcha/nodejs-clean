@@ -15,21 +15,14 @@ services:
             - ./node_modules:/home/alemarcha-back/node_modules
         depends_on:
             - db
-            - rediscluster
-    rediscluster:
-        image: grokzen/redis-cluster
-        container_name: alemarcha-rediscluster-clean
-        environment:
-            REDIS_CLUSTER_IP: '0.0.0.0'
-        ports:
-            - 7000:7000
-            - 7001:7001
-            - 7002:7002
-            - 7003:7003
-            - 7004:7004
-            - 7005:7005
+            - redis
+    redis:
+        image: redis
+        container_name: alemarcha-redis-clean
         logging:
             driver: 'json-file'
+        ports:
+            - 6379:6379
         depends_on:
             - db
     db:

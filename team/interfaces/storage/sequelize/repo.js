@@ -1,10 +1,10 @@
 'use strict';
 
-const errMethod = 'ERR_METHOD_NOT_IMPLEMENTED_SEQUELIZE'
+const errMethod = 'ERR_REPO_SEQUELIZE_NOT_IMPLEMENTED'
 
 module.exports = class {
 
-    create (pack) {
+    create (team) {
         throw new Error(errMethod);
     }
 

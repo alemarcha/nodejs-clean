@@ -8,10 +8,14 @@ class Storage extends Repository {
     this.redisRepo = redisRepo;
   }
 
-  create (team) {
-    // this.sequelizeRepo.find
-    // this.redisRepo.find
-    throw new Error('errMethod');
+    async create (team) {
+    try {
+        team = await this.sequelizeRepo.create(team)
+        return team
+    } catch (err) {
+        throw new Error('Error Storage Create');
+    }
+
   }
 
   async find (id) {

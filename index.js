@@ -3,6 +3,7 @@
 const express = require('express');
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
+const router = require('./router');
 
 if (cluster.isMaster) {
 
@@ -21,9 +22,8 @@ if (cluster.isMaster) {
   } else {
   
     const app = express();
-  
-    app.get('/', (req, res, next) => res.send('Hello World!' + cluster.worker.id));
-  
+    router(app)
+    
     app.listen(3000, function () {
         console.log('Example app listening on port 3000 as worker ' + cluster.worker.id + " running @ process " + cluster.worker.process.pid + "!");
       });

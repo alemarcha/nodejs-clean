@@ -1,4 +1,5 @@
 const TeamService = require('../domains/service.js');
+const TeamDomain = require('../domains/team.js');
 const errMethod = 'ERR_METHOD_NOT_IMPLEMENTED_USECASE';
 
 class TeamUseCase extends TeamService {
@@ -14,8 +15,14 @@ class TeamUseCase extends TeamService {
   async getAll () {
     throw new Error(errMethod);
   }
-  async create (pack) {
-    throw new Error(errMethod);
+  async create (team) {
+    try {
+        let team = new TeamDomain(team)
+        team = await this.repo.create(team)
+        return team
+    } catch (err) {
+        throw new Error('Error Storage Create');
+    }
   }
   async update (newData) {
     throw new Error(errMethod);
