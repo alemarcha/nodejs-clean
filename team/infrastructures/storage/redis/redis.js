@@ -1,6 +1,6 @@
 'use strict';
 const repo = require("./repo")
-const errMethod = 'ERR_SEQUELIZE_NOT_IMPLEMENTED'
+const errMethod = 'ERR_REDIS_NOT_IMPLEMENTED'
 
 
 class RedisRepository extends repo {
